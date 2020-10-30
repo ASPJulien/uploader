@@ -3,32 +3,25 @@
 <head>
     <meta charset="utf-8">
     <title>Upload</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>Upload a picture</h1>
-    
-    <form action="/upload.php" method="post" enctype="multipart/form-data">
-        <div class="form-upload">
-            <label for="name">Secret Key: </label>
-            <input type="text" name="secret" id="secret" required>
-        </div>
 
-        <br />
+    <form class="form" action="/upload.php" method="post" enctype="multipart/form-data">
 
-        <div class="form-upload">
-            <label for="picture">File: </label>
+
+            <h1>Upload a picture</h1>
+
+            <input type="text" name="secret" id="secret" placeholder="Secret Key" required>
             <input type="file" name="sharex" id="sharex" required>
-        </div>
-
-        <br />
 
         <div class="form-upload">
             <input type="submit" value="Send">
         </div>
 
     </form>
-    
+
 
 </body>
 </html>
