@@ -1,8 +1,10 @@
         <?php
         $secret_key = ""; // Add here your secret code
         $sharexdir = "i/"; // Directory where the files will be saved
-        $domain_url = ""; // URL of your website with a slash at the end
+        $domain_url = "/"; // URL of your website with a slash at the end
         $lengthofstring = 8; // There is the lenth of the file name
+
+
 
         if ($_POST['secret'] == $secret_key) {
             function RandomString($length) {
@@ -21,14 +23,20 @@
 
             $target_file = $_FILES["sharex"]["name"];
             $fileType = pathinfo($target_file, PATHINFO_EXTENSION);
-    
+
             if (in_array(strtolower($fileType), $image_ext) && move_uploaded_file($_FILES["sharex"]["tmp_name"], $sharexdir.$filename.'.'.$fileType)) {
-                 echo "$domain_url$sharexdir$filename.$fileType";
-            }   
+              $url = $sharexdir . $filename . "." . $fileType;
+              if($_POST['isrobot'] == '1'){
+                echo "$domain_url$url";
+              }
+              else{
+                 header("Location: $url", false);
+                 Exit;
+                 }
+            }
         }
         else {
             echo "Password is incorrect";
         }
 
         ?>
-    
